@@ -48,8 +48,8 @@ public class Unstitcher {
   
   public void load(InputStream stream) throws IOException {
     this.stitched = ImageIO.read(stream);
-    this.width = this.stitched.getWidth() / 18;
-    this.height = this.stitched.getHeight() / 18;
+    this.width = this.stitched.getWidth() / 16;
+    this.height = this.stitched.getHeight() / 16;
     this.position = 0;
   }
 
@@ -69,8 +69,8 @@ public class Unstitcher {
   public boolean unstitch(OutputStream stream) throws IOException {
     if (this.stitched == null || this.position < 0 || this.position > 255) return false;
      
-    int xo = this.position % 18 * this.width;
-    int yo = this.position / 18 * this.height;
+    int xo = this.position % 16 * this.width;
+    int yo = this.position / 16 * this.height;
     String name = this.positions.get(Integer.valueOf(this.position));
 
     if (name == null || name.isEmpty()) return true;
@@ -101,3 +101,4 @@ public class Unstitcher {
     ImageIO.write(this.stitched, "png", stream);
   }
 }
+
